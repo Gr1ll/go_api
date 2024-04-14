@@ -1,4 +1,4 @@
-package about
+package get
 
 import (
 	"encoding/json"
@@ -14,13 +14,15 @@ type AboutMeType struct {
 	Country   string `json:"country"`
 }
 
-func GetAboutMe(w http.ResponseWriter, r *http.Request) {
-	aboutMe := AboutMeType{
-		FirstName: "Cyril",
-		LastName:  "Kurmann",
-		Age:       18,
-		Country:   "Switzerland",
+func GetAboutMe(rw http.ResponseWriter, req *http.Request) {
+	if req.Method == "GET" {
+		aboutMe := AboutMeType{
+			FirstName: "Cyril",
+			LastName:  "Kurmann",
+			Age:       18,
+			Country:   "Switzerland",
+		}
+		json.NewEncoder(rw).Encode(aboutMe)
+		fmt.Println("Endpoint Hit: about_me")
 	}
-	json.NewEncoder(w).Encode(aboutMe)
-	fmt.Println("Endpoint Hit: about_me")
 }

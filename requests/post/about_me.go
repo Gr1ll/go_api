@@ -1,4 +1,4 @@
-package about
+package post
 
 import (
 	"encoding/json"
@@ -15,11 +15,14 @@ type AboutMeType struct {
 }
 
 func PostAboutMe(rw http.ResponseWriter, req *http.Request) {
-	decoder := json.NewDecoder(req.Body)
-	var t AboutMeType
-	err := decoder.Decode(&t)
-	if err != nil {
-		panic(err)
+	if req.Method == "POST" {
+		decoder := json.NewDecoder(req.Body)
+		var t AboutMeType
+		err := decoder.Decode(&t)
+		if err != nil {
+			panic(err)
+		}
+		log.Println(t.FirstName)
+		http.Error(rw, "Post request received", http.StatusOK)
 	}
-	log.Println(t.FirstName)
 }
