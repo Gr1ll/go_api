@@ -4,10 +4,12 @@ import (
 	"log"
 	"net/http"
 
-	homeGet "github.com/Gr1ll/go_api/requests/get"
+	about_me "github.com/Gr1ll/go_api/requests/get"
 )
 
 func HandleRequests() {
-	http.HandleFunc("/home", homeGet.Home)
+	//get Requests
+	http.HandleFunc("/about-me", about_me.GetAboutMe)
+
 	log.Fatal(http.ListenAndServe(":10000", nil))
 }
