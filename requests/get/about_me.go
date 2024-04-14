@@ -7,7 +7,7 @@ import (
 )
 
 // create json types
-type AboutMeRes struct {
+type AboutMeType struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Age       int    `json:"age"`
@@ -15,7 +15,7 @@ type AboutMeRes struct {
 }
 
 func GetAboutMe(w http.ResponseWriter, r *http.Request) {
-	aboutMe := AboutMeRes{
+	aboutMe := AboutMeType{
 		FirstName: "Cyril",
 		LastName:  "Kurmann",
 		Age:       18,

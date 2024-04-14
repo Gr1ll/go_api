@@ -2,25 +2,24 @@ package about
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 )
 
 // create json types
-type AboutMeRes struct {
+type AboutMeType struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Age       int    `json:"age"`
 	Country   string `json:"country"`
 }
 
-func PostAboutMe(w http.ResponseWriter, r *http.Request) {
-	aboutMe := AboutMeRes{
-		FirstName: "Cyril",
-		LastName:  "Kurmann",
-		Age:       18,
-		Country:   "Switzerland",
+func PostAboutMe(rw http.ResponseWriter, req *http.Request) {
+	decoder := json.NewDecoder(req.Body)
+	var t AboutMeType
+	err := decoder.Decode(&t)
+	if err != nil {
+		panic(err)
 	}
-	json.NewEncoder(w).Encode(aboutMe)
-	fmt.Println("Endpoint Hit: about_me")
+	log.Println(t.FirstName)
 }
