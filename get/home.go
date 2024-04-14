@@ -13,7 +13,7 @@ type Article struct {
 	Content string `json:"content"`
 }
 
-func home(w http.ResponseWriter, r *http.Request) {
+func Home(w http.ResponseWriter, r *http.Request) {
 	articles := []Article{
 		Article{Title: "Hello", Desc: "Article Description", Content: "Article Content"},
 		Article{Title: "Hello 2", Desc: "Article Description", Content: "Article Content"},
